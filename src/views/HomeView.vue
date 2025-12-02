@@ -1,7 +1,15 @@
 <script setup lang="ts">
+import { ref, onMounted } from 'vue'
+import MarkdownView from '../components/molecules/MarkdownView.vue'
+
+const markdownContent = ref('')
+
+onMounted(async () => {
+  const response = await fetch('/data.md')
+  markdownContent.value = await response.text()
+})
 </script>
 
 <template>
-  <h1>Home</h1>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, beatae!</p>
+  <MarkdownView :data-md="markdownContent" />
 </template>

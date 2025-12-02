@@ -13,7 +13,7 @@ import Header from './components/molecules/Header.vue'
 
 <style scoped>
 main {
-  max-width: 600px;
+  max-width: 800px;
   width: 100%;
   border: 1px solid var(--primary-main);
   border-radius: 0.5em;
