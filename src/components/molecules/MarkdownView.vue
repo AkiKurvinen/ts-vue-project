@@ -6,7 +6,21 @@
 import { computed } from 'vue'
 import { marked } from 'marked'
 const props = defineProps<{ dataMd: string }>()
-const compiledHtml = computed(() => props.dataMd ? marked.parse(props.dataMd) : '')
+
+function injectBasePath(md: string, base: string) {
+    // Replace relative markdown links: [text](relative)
+    md = md.replace(/\]\((?!http|\/|#)([^)]+)\)/g, "](" + base + "$1)");
+    // Replace relative image sources: ![alt](relative)
+    md = md.replace(/!\[([^\]]*)\]\((?!http|\/|#)([^)]+)\)/g, "![$1](" + base + "$2)");
+    return md;
+}
+
+const compiledHtml = computed(() => {
+    if (!props.dataMd) return ''
+    const base = import.meta.env.BASE_URL
+    const processedMd = injectBasePath(props.dataMd, base)
+    return marked.parse(processedMd)
+})
 </script>
 
 <style scoped>

@@ -7,6 +7,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 import { plugin as Markdown } from 'vite-plugin-markdown'
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/ts-vue-project/',
   plugins: [
     vue(),
     vueJsx(),

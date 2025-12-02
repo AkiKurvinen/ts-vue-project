@@ -23,7 +23,7 @@ function addToCart(name: string) {
 }
 
 onMounted(async () => {
-    const response = await fetch('/data.json')
+    const response = await fetch(import.meta.env.BASE_URL + 'data.json')
     const data = await response.json()
     // Ensure isAvailable is present for each item
     items.value = (data.items ?? []).map((item: any) => ({

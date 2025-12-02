@@ -3,7 +3,7 @@
 ![Apple](./apple-2788616_640.jpg)
 *Apples are delicious*  
 
-[See all products](/stock)
+[See all products](./stock)
 
 <hr/>
 
