@@ -15,6 +15,18 @@ function injectBasePath(md: string, base: string) {
     return md;
 }
 
+// Custom renderer to support hash navigation
+marked.use({
+    renderer: {
+        link(this: any, { href, title, text }: { href?: string | null, title?: string | null, text: string }) {
+            if (href && href.startsWith('#')) {
+                return `<a href="${href}" onclick="window.location.hash='${href}';return false;">${text}</a>`;
+            }
+            return `<a href="${href ?? ''}"${title ? ` title="${title}"` : ''}>${text}</a>`;
+        }
+    }
+});
+
 const compiledHtml = computed(() => {
     if (!props.dataMd) return ''
     const base = import.meta.env.BASE_URL
