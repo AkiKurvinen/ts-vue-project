@@ -8,10 +8,16 @@ import { marked } from 'marked'
 const props = defineProps<{ dataMd: string }>()
 
 function injectBasePath(md: string, base: string) {
-    // Replace relative markdown links: [text](relative)
-    md = md.replace(/\]\((?!http|\/|#)([^)]+)\)/g, "](" + base + "$1)");
-    // Replace relative image sources: ![alt](relative)
-    md = md.replace(/!\[([^\]]*)\]\((?!http|\/|#)([^)]+)\)/g, "![$1](" + base + "$2)");
+    // First, replace relative image sources: ![alt](relative)
+    md = md.replace(/!\[([^\]]*)\]\((?!http|\/|#)([^)]+)\)/g, '![$1](' + base + '$2)');
+    // Then, replace relative markdown links: [text](relative) with hash links for SPA navigation
+    md = md.replace(/\[([^\]]+)\]\((?!http|\/|#)([^)]+)\)/g, function (match, text, link) {
+        // If this is an image link, skip (already processed)
+        if (match.startsWith('!')) return match;
+        // Remove leading './' or '/' from link for clean hash
+        const cleanLink = link.replace(/^\.\//, '').replace(/^\//, '');
+        return `[${text}](#${cleanLink})`;
+    });
     return md;
 }
 
