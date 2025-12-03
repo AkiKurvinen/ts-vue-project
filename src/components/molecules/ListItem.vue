@@ -10,6 +10,7 @@
 </template>
 
 <script setup lang="ts">
+// @ts-expect-error - no types available for vue-material-design-icons
 import CartIcon from 'vue-material-design-icons/Cart.vue'
 import IconButton from '../atoms/IconButton.vue'
 defineProps<{ name: string; amount: number; isAvailable: boolean; onAddToCart: (name: string) => void }>()
