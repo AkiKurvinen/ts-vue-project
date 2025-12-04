@@ -61,3 +61,16 @@ const compiledHtml = computed(() => {
     margin: 1em 0;
 }
 </style>
+<script lang="ts">
+/**
+ * MarkdownView component
+ *
+ * Renders parsed and styled Markdown content as HTML.
+ *
+ * @prop {string} dataMd - The raw markdown string to render.
+ *
+ * @example
+ * <MarkdownView :dataMd="markdownContent" />
+ */
+export default {};
+</script>

@@ -35,3 +35,19 @@ span {
     min-width: 50px;
 }
 </style>
+<script lang="ts">
+/**
+ * ListItem component
+ *
+ * Renders a list item with a name, amount, and an optional add-to-cart button.
+ *
+ * @prop {string} name - The name of the item.
+ * @prop {number} amount - The amount or quantity of the item.
+ * @prop {boolean} isAvailable - Whether the item is available for adding to cart.
+ * @prop {(name: string) => void} onAddToCart - Function called when the add-to-cart button is clicked.
+ *
+ * @example
+ * <ListItem name="Apple" amount={5} :isAvailable="true" :onAddToCart="addToCartHandler" />
+ */
+export default {};
+</script>

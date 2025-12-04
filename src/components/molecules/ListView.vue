@@ -1,5 +1,6 @@
 <template>
     <ul>
+        <ListItem name="Test item" :amount="10" :isAvailable="true" :onAddToCart="onAddToCart"/>
         <ListItem v-for="(item, index) in items" :key="index" :name="item.name" :amount="item.amount"
             :isAvailable="item.isAvailable" :onAddToCart="onAddToCart" />
     </ul>
@@ -21,3 +22,14 @@ ul {
     gap: 0.5em;
 }
 </style>
+<script lang="ts">
+/**
+    * ListView component
+    * * Renders a list of items using the ListItem component.
+    * @prop {Array<{ name: string; amount: number; isAvailable: boolean }>} items - The array of items to display.
+    * @prop {(name: string) => void} onAddToCart - Function called when an item is added to the cart.
+    * @example
+    * <ListView :items="itemList" :onAddToCart="handleAddToCart" />
+ */
+export default {};
+</script>

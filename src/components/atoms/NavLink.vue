@@ -4,11 +4,6 @@
     </RouterLink>
 </template>
 
-<script setup lang="ts">
-import { RouterLink } from 'vue-router'
-defineProps<{ to: string }>()
-</script>
-
 <style scoped>
 .nav-link {
     color: inherit;
@@ -28,3 +23,24 @@ defineProps<{ to: string }>()
     color: var(--primary-dark);
 }
 </style>
+<script lang="ts">
+/**
+ * NavLink component
+ *
+ * Renders a navigation link using Vue Router.
+ *
+ * @prop {string} to - The route path or name to navigate to.
+ * @slot Default slot for link content (e.g., text, icons).
+ *
+ * @example
+ * <NavLink to="/about">About</NavLink>
+ */
+export default {
+  props: {
+    to: {
+      type: String,
+      required: true
+    }
+  }
+};
+</script>
